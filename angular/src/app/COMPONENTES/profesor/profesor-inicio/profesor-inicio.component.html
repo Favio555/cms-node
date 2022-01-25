@@ -1,0 +1,187 @@
+<app-menu-lateral></app-menu-lateral>
+
+    <div class="container"><br>
+         <div class="row">
+            <div class="col-md-8">
+             <!--COLUMNA FORMULARIO REGISTRO-->
+                     
+                <form class=" shadow-5-strong p-5 caja ">
+                    <h5 >FORMULARIO DE REGISTRO</h5>
+                    <div class="row">
+                        <!--COLUMNA 1-->
+                        <div class="col-sm-6 ">
+                            <div class="form-group"> <!-- NOMBRE -->
+                                <input [(ngModel)]="use.nombre" name="first" type="text" class="form-control" id="full_name_id" name="full_name" placeholder="Nombre">
+                            </div>
+
+                            <div class="form-group"><br> <!-- Street 1 -->
+                                <input  [(ngModel)]="use.apellido_paterno" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street1_id" name="street1" placeholder="Apellido Paterno">
+                            </div>
+                            <div class="form-group"><br> <!-- Street 2 -->
+                                <input [(ngModel)]="use.ci" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Cedula de Identidad">
+                            </div>  
+                            <div class="form-group"><br> <!-- Street 2 -->
+                                <input  [(ngModel)]="use.materia" [ngModelOptions]="{standalone: true}"type="text" class="form-control" id="street2_id" name="street2" placeholder="Materia">
+                            </div>                        
+                            
+                         
+                            <div class="row">
+                                <!--COLUMNA 1.2-->
+                                <div class="col-md-4 "> 
+                                    <div class="form-group"> <br><!-- State Button -->
+                                        <label for="state_id" class="control-label" >Genero</label>
+                                        <select  [(ngModel)]="use.genero" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id" >
+                                            <option value="F">F</option>
+                                            <option value="M">M</option>
+                                        </select>                    
+                                    </div>
+                                </div>
+                                <div class="col-md-4 "> 
+                                    <div class="form-group"> <br><!-- State Button -->
+                                        <label for="state_id" class="control-label">Paralelo</label>
+                                        <select  [(ngModel)]="use.paralelo" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                        </select>                    
+                                    </div><br>
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2">
+                                <button (click)="agregar()"  type="button" class="btn btn-lg btn-success "><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar</button>
+                            </div>
+                            
+                            <!-- <button routerLink="/add" type="button" class="btn btn-primary "style="background-color: #238D4E;">Agregar</button>--> 
+                                
+                        
+                
+                        </div>
+                        <!--COLUMNA 2-->
+                        <div class="col-sm-6 ">
+                            <div class="form-group"><!-- Street 2 -->
+                                <input  [(ngModel)]="use.correo_electronico" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="street2_id" name="street2" placeholder="Correo Electronico">
+                            </div>   
+                            <div class="form-group"><br> <!-- Street 2 -->
+                                <input  [(ngModel)]="use.apellido_materno" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Apellido materno">
+                            </div> 
+                            <div class="form-group"><br> <!-- Street 2 -->
+                                <input  [(ngModel)]="use.celular" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Celular">
+                            </div> 
+                                
+                            <div class="form-group"><br> <!-- Street 2 -->
+                                <input  [(ngModel)]="use.especialidad" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Especialidad">
+                            </div>                                                     
+                            <div class="row">
+                                <!--COLUMNA 1-->
+                                <div class="col-md-4 "> 
+                                    <div class="form-group"><br> <!-- State Button -->
+                                        <label for="state_id" class="control-label">Curso</label>
+                                        <select  [(ngModel)]="use.curso" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>                    
+                                    </div>
+                                </div>
+                                <div class="col-md-4 "> 
+                                    <div class="form-group"><br> <!-- State Button -->
+                                        <label for="state_id" class="control-label">Grado</label>
+                                        <select  [(ngModel)]="use.grado" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                            <option value="Primaria">Primaria</option>
+                                            <option value="Secundaria">Secundaria</option>
+                                        </select>                    
+                                    </div><br> 
+                                </div>
+                               
+                            </div>
+                            <!--COLUMNA SELECCIONAR IMAGEN-->
+
+                            <input type="file" class="d-none"  (change)="onPhotoSelected($event)" #photoInput>
+                            <button  (click)="photoInput.click()" type="button" class="btn btn-outline-success">Seleccionar Imagen</button>&nbsp;
+                            <button  (click)=" limpiarfoto()" type="button" class="btn btn-danger">limpiar</button>
+                           
+                            <!---->
+                        </div>
+                    </div> 
+                  
+
+                </form>
+            </div>
+            
+            <div class="col-md-4">
+                <!--COLUMNA 2 vistas-->
+                <form class=" shadow-5-strong p-4 cajaCard " ><br>
+                   
+                    <div class="row">
+                        <!--COLUMNA 1-->
+                        <div class="col-sm-6 ">
+                            <div class="form-group" > <!-- State Button -->
+                                <img  [src]="photoSelected || 'assets/img/no-image.png'" height="150px" width="150px" style="border-radius: 10%;border: 2px rgb(189, 180, 180) solid;">          
+                             </div>
+                            
+                             <div class="form-group"><!-- State Button -->
+                                Materia:  <label for="state_id" class="control-label">{{use.materia}}</label>                
+                             </div>
+                            
+                            <div class="form-group"> <!-- State Button -->
+                                Curso:  <label for="state_id" class="control-label">{{use.curso}}</label>                
+                             </div>
+                             
+                            <div class="form-group"> <!-- State Button -->
+                             Paralelo:  <label for="state_id" class="control-label">{{use.paralelo}}</label>
+                            </div>
+                             <div class="form-group"> <!-- State Button -->
+                                Grado:  <label for="state_id" class="control-label">{{use.grado}}</label>                
+                             </div>
+                          
+                            
+                
+                        </div>
+                        <!--COLUMNA 2-->
+                        <div class="col-sm-6 ">
+                            <div class="form-group"> <!-- State Button -->
+                                Nombre:  <label for="state_id" class="control-label">{{use.nombre}}</label>                
+                             </div>
+                             <div class="form-group"> <!-- State Button -->
+                                Apellido Paterno:  <label for="state_id" class="control-label">{{use.apellido_paterno}}</label>                
+                             </div>
+                            <div class="form-group"> <!-- State Button -->
+                                Apellido Materno:  <label for="state_id" class="control-label">{{use.apellido_materno}}</label>                
+                             </div>
+                             <div class="form-group"> <!-- State Button -->
+                                Celular:  <label for="state_id" class="control-label">{{use.celular}}</label>                
+                             </div>
+                             <div class="form-group"> <!-- State Button -->
+                                Ci:  <label for="state_id" class="control-label">{{use.ci}}</label>                
+                             </div>
+                                                
+                             <div class="form-group"> <!-- State Button -->
+                                Genero: <label for="state_id" class="control-label" >{{use.genero}}</label>                   
+                             </div>
+
+                            <div class="form-group"> <!-- State Button -->
+                                Correo Electronico:  <label for="state_id" class="control-label">{{use.correo_electronico}}</label>                
+                             </div> 
+                        </div>
+                    </div>        
+                    
+                </form><br>
+                <!--mensaje de advertencia-->
+                <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+                <br>
+               
+            </div>
+
+        </div>
+
+    </div>
+
+
+      
+ 

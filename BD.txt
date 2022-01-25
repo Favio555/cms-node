@@ -1,0 +1,191 @@
+--TABLA PERSONA---
+CREATE TABLE persona (
+	id SERIAL NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	apellido_paterno VARCHAR(90) NOT NULL,
+	apellido_materno VARCHAR(90) NOT NULL,
+	ci INT NOT NULL,
+	celular INT NOT NULL,
+	correo_electronico VARCHAR(90) NULL,
+	genero VARCHAR(90) NOT NULL,
+	imagen VARCHAR(90) NULL,
+	PRIMARY KEY(id)
+);
+--TABLA PROFESOR---
+CREATE TABLE profesor(
+	id SERIAL NOT NULL,
+	id_persona INT NOT NULL,
+	materia VARCHAR(90) NOT NULL,
+	especialidad VARCHAR(90) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_persona) REFERENCES persona(id)
+);
+-- TABLA CURSO---
+CREATE TABLE curso(
+	id SERIAL NOT NULL,
+	id_profesor INT NOT NULL,
+	curso VARCHAR(90) NOT NULL,
+	paralelo VARCHAR(90) NULL,
+	grado VARCHAR(90) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_profesor) REFERENCES profesor(id)
+);
+--TABLA ADMINISTRADOR---
+CREATE TABLE administrador(
+	id SERIAL NOT NULL,
+	id_persona INT NOT NULL,
+	usuario VARCHAR(90) NOT NULL,
+	contraseña VARCHAR(90) NOT NULL,
+	nivel INT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_persona) REFERENCES persona(id)
+);
+--TABLA PLANTEL_ADMINISTRATIVO---
+CREATE TABLE plantel(
+	id SERIAL NOT NULL,
+	id_persona INT NOT NULL,
+	cargo VARCHAR(90) NOT NULL,
+	especialidad VARCHAR(90) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_persona) REFERENCES persona(id)
+);
+--TABLA PAGINA---
+CREATE TABLE pagina(
+	id SERIAL NOT NULL,
+	id_administrador INT NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	imagen VARCHAR(90) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_administrador) REFERENCES administrador(id)
+);
+--TABLA MENU---
+CREATE TABLE menu(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	color_fondo VARCHAR(150) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+
+INSERT INTO menu(id_pagina, color_fondo)
+	VALUES(1,'bg-dark');
+	
+--TABLA DETALLE
+CREATE TABLE detalle(
+	id SERIAL NOT NULL,
+	id_menu INT NOT NULL,
+	nombre VARCHAR(150) NULL,
+	ruta VARCHAR(150) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_menu) REFERENCES menu(id)
+);
+INSERT INTO detalle(id_menu, nombre,ruta)
+	VALUES(1,'profesores','vistaProfesor');
+	
+--TABLA CONFIGURACION_GENERAL---
+CREATE TABLE configuracion(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	logo VARCHAR(90) NOT NULL,
+	fondo_principal VARCHAR(90) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA ENLACE---
+CREATE TABLE enlace(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	nombre VARCHAR(200) NOT NULL,
+	imagen VARCHAR(200) NOT NULL,
+	linkk VARCHAR(200) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA VIDEOS---
+CREATE TABLE video(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	descripcion VARCHAR(90) NULL,
+	fecha DATE DEFAULT NOW(),
+	hora TIME DEFAULT NOW(),
+	archivo VARCHAR(1000) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA AVISOS---
+CREATE TABLE aviso(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	descripcion VARCHAR(300) NOT NULL,
+	fecha DATE DEFAULT NOW(),
+	hora TIME DEFAULT NOW(),
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA GALERIA---
+CREATE TABLE GALERIA(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	nombre VARCHAR(90) NOT NULL,
+	descripcion VARCHAR(90) NOT NULL,
+	categoria VARCHAR(90) NOT NULL,
+	fecha DATE DEFAULT NOW(),
+	hora TIME DEFAULT NOW(),
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA FOTO---
+CREATE TABLE foto(
+	id SERIAL NOT NULL,
+	id_galeria INT NOT NULL,
+	imagen VARCHAR(90) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_galeria) REFERENCES galeria(id)
+);
+--TABLA SLIDER---
+CREATE TABLE slider(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	titulo VARCHAR(200) NOT NULL,
+	descripcion VARCHAR(200) NOT NULL,
+	imagen VARCHAR(200) NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA FOOTER---
+CREATE TABLE footer(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	color_texto VARCHAR(90) NULL,
+	color_fondo VARCHAR(90) NULL,
+	telefono INT NULL,
+	descripcion VARCHAR(90) NOT NULL,
+	correo VARCHAR(90) NOT NULL,
+	direccion VARCHAR(90) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);
+--TABLA REDES_SOCIALES---
+CREATE TABLE redes(
+	id SERIAL NOT NULL,
+	id_footer INT NOT NULL,
+	nombre VARCHAR(90) NULL,
+	icono VARCHAR(90) NULL,
+	enlace VARCHAR(90) NOT  NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_footer) REFERENCES footer(id)
+);
+--TABLA BLOG---
+CREATE TABLE blog(
+	id SERIAL NOT NULL,
+	id_pagina INT NOT NULL,
+	titulo VARCHAR(200) NOT NULL,
+	descripcion VARCHAR(600) NOT NULL,
+	imagen VARCHAR(90) NULL,
+	fecha DATE DEFAULT NOW(),
+	hora TIME DEFAULT NOW(),
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_pagina) REFERENCES pagina(id)
+);

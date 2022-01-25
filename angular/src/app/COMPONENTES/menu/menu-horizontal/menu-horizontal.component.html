@@ -1,0 +1,152 @@
+<app-menu-lateral></app-menu-lateral>
+<div class="form-group"style="border-left: rgb(255, 251, 251) 80px solid;"><br> <!-- Submit Button -->
+  <tr>
+    <td> <button class="btn btn-outline-primary" (click)="reloadCurrentPage()"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refrescar</button></td>
+  </tr>
+</div>
+
+<div class="container" *ngFor="let menu of  Listarmenu" ><hr>
+<div class="container" *ngFor="let pagina of  Listarpagina" >   
+  
+        <nav class="navbar navbar-expand-lg navbar-dark {{menu.color_fondo}}">
+        <div class="container-fluid">
+          <img src="assets/img/{{pagina.imagen}}" width="80px" height="90px" >
+          <a class="navbar-brand" href="#">{{pagina.nombre}}</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto"*ngFor="let detalle of  Listardetalle">
+                
+                    <li class="nav-item">
+                        <a class="nav-link active"  routerLink="{{detalle.ruta}}">{{detalle.nombre}}
+                          <span class="visually-hidden">(current)</span>
+                        </a>
+                        <button (click)="eliminar(detalle.id!)" type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </li>
+            
+            </ul>
+            <!--
+                 <form class="d-flex">
+              <input class="form-control me-sm-2" type="text" placeholder="Buscar">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+             -->
+           
+          </div>
+        </div>
+      </nav><hr>
+    <!--CUADRANTES -->
+        <!--  -->
+      <div class="row">
+        <div class="col-sm-3 " >
+        <!--CUADRANTE 1  -->
+        
+        <div class="form-group card"> <!-- State Button -->
+            <b for="state_id" class="control-label">Cambiar color del menu:</b><hr>
+            <table>
+              <tr>
+                <td>
+                  <label for="state_id" class="control-label">Seleccionar:</label>
+                </td>
+                <td>
+                  <select  [(ngModel)]="use2.color_fondo" [ngModelOptions]="{standalone: true}" class="control" id="state_id">
+                    <option value="bg-dark" >Negro</option>
+                    <option value="bg-primary" >Azul</option>
+                    <option value="bg-success">verde</option>
+                    <option value="bg-info">Morado</option>
+                    <option value="bg-warning">Naranja</option>
+                    <option value="bg-danger">rojo</option>
+                </select> 
+                </td>
+              </tr>
+            </table><br>
+             <!-- Submit Button -->
+              <div class="d-grid gap-2">
+                <button (click)="modificar(menu.id!)"  type="button" class="btn btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar</button>
+              </div>
+             <!--  -->                   
+        </div><br>
+        
+        </div>
+        <div class="col-sm-3 ">
+        <!--CUADRANTE 2  -->
+        <div class="form-group card"> 
+          <b for="state_id" class="control-label">Añadir pestaña</b><hr>
+          <table>
+            <tr>
+              <td> <label for="state_id" class="control-label">Nombre:</label></td>
+              <td>
+                <select  [(ngModel)]="use3.nombre" [ngModelOptions]="{standalone: true}" class="control" id="state_id">
+                  <option value="Inicio" >Inicio</option>
+                  <option value="Profesores" >Vista Profesor</option>                
+                  <option value="Avisos">Vista aviso</option>
+                  <option value="Blog">Vista blog</option>
+                  <option value="Galeria">Vista galeria</option>
+                  <option value="Videos">Vista video</option>
+                  <option value="Login" >Login</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td> <label for="state_id" class="control-label">Ruta:</label></td>
+              <td>
+                <select  [(ngModel)]="use3.ruta" [ngModelOptions]="{standalone: true}" class="control" id="state_id">
+                  <option value="/inicio" >Inicio</option>
+                  <option value="/vistaProfesor" >Vista Profesor</option>
+                  <option value="/vista-aviso">Vista aviso</option>
+                  <option value="/vista-blog">Vista blog</option>
+                  <option value="/vista-galeria">Vista galeria</option>
+                  <option value="/vista-video">Vista video</option>
+                  <option value="/login" >Login</option>
+                </select> 
+              </td>
+            </tr>
+          </table><br> 
+             <!-- Submit Button -->
+              <div class="d-grid gap-2">
+                  <button (click)="addDetalle()"  type="button" class="btn  btn-success "><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Agregar </button>
+              </div>
+             <!--  -->                  
+        </div><br>
+       
+        </div>
+        <div class="col-sm-3 ">
+        <!--CUADRANTE 3  -->
+        <div class="form-group card"> 
+          <b for="state_id" class="control-label">Cambiar Imagen y Nombre:</b><hr>
+          <table>
+            <tr>
+                <td><label for="state_id" class="control-label">Titulo:</label></td>
+                <td><input [(ngModel)]="use4.nombre" type="text" class="control" ></td>
+            </tr> <br>
+            <tr>      
+              <td>
+                <input type="file" class="d-none"  (change)="onPhotoSelected($event)" #photoInput>
+                <button  (click)="photoInput.click()" type="button" class="btn btn-outline-success">Imagen</button>      
+              </td>
+              <td>
+                  <button (click)="modificarEditSelect(pagina.id!)"  type="button" class="btn btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Guardar</button>
+                     
+              </td>
+            </tr>
+          </table> 
+        </div><br>
+       
+        <!--  -->
+        </div>
+        <div class="col-sm-3 ">
+        <!--CUADRANTE 4  -->
+        <img  [src]="photoSelected || 'assets/img/no-image.png'" height="210px" width="240px" style="border-radius: 10%;border: 2px rgb(189, 180, 180) solid;"><br> <br> 
+        <td>   
+          <button  (click)=" limpiar()" type="button" class="btn btn-danger">limpiar Formularios</button> 
+        </td><br> 
+        <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+        <!--  -->
+        </div>
+      </div>
+
+
+</div>    
+</div>

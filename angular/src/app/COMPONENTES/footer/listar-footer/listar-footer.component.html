@@ -1,0 +1,250 @@
+<app-menu-lateral></app-menu-lateral>
+<div class="form-group"style="border-left: rgb(255, 251, 251) 80px solid;"><br> <!-- Submit Button -->
+    <app-in-footer></app-in-footer> 
+ 
+</div>
+<div class="container">  <hr> <button (click)="mostrarOcultar()" type="button" class="btn btn-success"><i class="fa fa-list fa-1x"></i> &nbsp; REGISTRO DE LA INFORMACION DEL PIE DE PAGINA</button></div><br>
+<div *ngIf="showMe">
+     <div class="table-responsive " style="border-left: rgb(255, 251, 251) 80px solid;
+               border-right: rgb(255, 251, 251) 30px solid;" >
+     
+                     
+            <table class="table caption-top custab ">
+             
+             <thead style="background :rgba(205, 207, 206, 0.534);">
+               <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Telefono</th>
+                 <th scope="col">Descripcion</th>
+                 <th scope="col">correo</th>
+                 <th scope="col">Direccion</th>
+                 <th scope="col">Editar</th>
+                 
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let fo of Listarfooter  | paginate: { itemsPerPage: 6, currentPage: page }">
+                 <th scope="row">{{ fo.id}}</th>
+                 <td>{{fo.telefono}}</td>
+                 <td>{{ fo.descripcion}}</td>
+                 <td>{{fo.correo}}</td>
+                 <td>{{fo.direccion}}</td>
+                 <td>
+                     <button (click)="mostrarModificar(fo.id!)" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                 </td>
+               
+               </tr>
+               
+             </tbody>
+           </table>
+           <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+           nextLabel="Siguiente" ></pagination-controls>
+
+            <!--Formulario-->
+            <div class="container">
+                <div class="row">
+                    <!--COLUMNA 1-->
+                    
+                    <div class="col-sm-4 card ">
+                        <div class="cabe">
+                           
+                            <b for="state_id" class="control-label">Editar información del pie de página:</b><br><hr>
+                        </div> 
+                        <table>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Telefono:</label></td>
+                                <td><input [(ngModel)]="use3.telefono" type="text" class="control" ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Descripción:</label></td>
+                                <td><input  [(ngModel)]="use3.descripcion" [ngModelOptions]="{standalone: true}" type="text" class="control"  ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Correo:</label></td>
+                                <td><input  [(ngModel)]="use3.correo" [ngModelOptions]="{standalone: true}" type="text" class="control"  ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Dirección:</label></td>
+                                <td> <input  [(ngModel)]="use3.direccion" [ngModelOptions]="{standalone: true}" type="text" class="control" ></td>
+                            </tr>
+                             <!-- 
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr> -->
+                            
+                        </table><hr>
+                        <!-- Submit Button -->
+                       <div class="d-grid gap-2" *ngFor="let fo of Listarfooter">
+                        <button (click)="modificar()"  type="button" class="btn btn-lg btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                       </div>
+                    </div>
+                    <!--COLUMNA 2-->
+                    <div class="col-sm-6 ">    
+                        <button  (click)=" limpiarfoo()" type="button" class="btn btn-danger">limpiar</button> <br> <br>                                             
+                             <!--mensaje de advertencia-->
+                       <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+     
+                    </div>
+                </div>  
+            </div>
+            
+            <!---->
+     </div>
+</div>
+
+
+<div class="container">  <hr> <button (click)="mostrarOcultar2()" type="button" class="btn btn-warning"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; REGISTRO DE INFORMACION DE REDES SOCIALES</button></div><br>
+<div *ngIf="showMe2">
+     <div class="table-responsive " style="border-left: rgb(255, 251, 251) 80px solid;
+               border-right: rgb(255, 251, 251) 30px solid;" >
+     
+                     
+            <table class="table caption-top custab ">
+             
+             <thead style="background :rgba(205, 207, 206, 0.534);">
+               <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Nombre</th>
+                 <th scope="col">Icono</th>
+                 <th scope="col">Enlace</th>
+                 <th scope="col">Editar</th>
+                 <th scope="col">Eliminar</th>
+                 
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let re of Listarredes  | paginate: { itemsPerPage: 2, currentPage: page }">
+                 <th scope="row">{{ re.id}}</th>
+                 <td>{{re.nombre}}</td>
+                 <td>{{re.icono }}</td>
+                 <td>{{re.enlace}}</td>
+                 <td>
+                     <button (click)="mostrarModificarRedes(re.id!)" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                 </td>
+                 <td>
+                    <button (click)="eliminarRed(re.id!)" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </td>
+               
+               </tr>
+               
+             </tbody>
+           </table>
+           <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+           nextLabel="Siguiente" ></pagination-controls>
+
+            <!--Formulario-->
+            <div class="container">
+                <div class="row">
+                    <!--COLUMNA 1-->
+                    
+                    <div class="col-sm-4 card ">
+                        <div class="cabe">
+                           
+                            <b for="state_id" class="control-label">Editar información:</b><br><hr>
+                        </div> 
+                        <table>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Nombre:</label></td>
+                                <td><input [(ngModel)]="useRedes2.nombre" type="text" class="control" ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Icono:</label></td>
+                                <td>
+                                    <select  [(ngModel)]="useRedes2.icono" [ngModelOptions]="{standalone: true}" class="control" >
+                                        <option value="fa fa-facebook-official fa-2x" >Facebook</option> 
+                                        <option value="fa fa-whatsapp fa-2x" >Whatsapp</option>
+                                        <option value="fa fa-youtube-play fa-2x">Youtube</option>
+                                        <option value="fa fa-telegram fa-2x">Telegram</option>
+                                        <option value="fa fa-linkedin fa-2x">Linkedin</option>
+                                        <option value="fa fa-twitter fa-2x">Twitter</option>
+                                        <option value="fa fa-snapchat fa-2x">Snapchat</option>
+                                        <option value="fa fa-instagram fa-2x">Instagram</option>
+                                        <option value="fa fa-twitch fa-2x">Twitch</option>
+                                        <option value=" fa fa-spotify fa-2x">Spotify</option>
+                                    </select> 
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><label for="state_id" class="control-label">Enlace:</label></td>
+                                <td><input  [(ngModel)]="useRedes2.enlace" [ngModelOptions]="{standalone: true}" type="text" class="control"  ></td>
+                            </tr>
+                           
+                             <!-- 
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr> -->
+                            
+                        </table><hr>
+                        <!-- Submit Button -->
+                       <div class="d-grid gap-2">
+                            <button (click)="modificarRedes()"  type="button" class="btn btn-lg btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <!--COLUMNA 2-->
+                    
+                    <div class="col-sm-4 card ">
+                        <div class="cabe">
+                           
+                            <b for="state_id" class="control-label">Añadir información:</b><br><hr>
+                        </div> 
+                        <table>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Nombre:</label></td>
+                                <td><input [(ngModel)]="useRedesAdd.nombre" type="text" class="control" ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="state_id" class="control-label">Icono:</label></td>
+                                <td>
+                                    <select  [(ngModel)]="useRedesAdd.icono" [ngModelOptions]="{standalone: true}" class="control" >
+                                        <option value="fa fa-facebook-official fa-2x" >Facebook</option> 
+                                        <option value="fa fa-whatsapp fa-2x" >Whatsapp</option>
+                                        <option value="fa fa-youtube-play fa-2x">Youtube</option>
+                                        <option value="fa fa-telegram fa-2x">Telegram</option>
+                                        <option value="fa fa-linkedin fa-2x">Linkedin</option>
+                                        <option value="fa fa-twitter fa-2x">Twitter</option>
+                                        <option value="fa fa-snapchat fa-2x">Snapchat</option>
+                                        <option value="fa fa-instagram fa-2x">Instagram</option>
+                                        <option value="fa fa-twitch fa-2x">Twitch</option>
+                                        <option value=" fa fa-spotify fa-2x">Spotify</option>
+                                       
+                                    </select> 
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><label for="state_id" class="control-label">Enlace:</label></td>
+                                <td><input  [(ngModel)]="useRedesAdd.enlace" [ngModelOptions]="{standalone: true}" type="text" class="control"  ></td>
+                            </tr>
+                           
+                             <!-- 
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr> -->
+                            
+                        </table><hr>
+                        <!-- Submit Button -->
+                       <div class="d-grid gap-2">
+                        <button (click)="anadirRed()"  type="button" class="btn btn-lg btn-primary "><i class="fa fa-plus" aria-hidden="true"></i></button>
+                       
+                    </div>
+                    </div>
+                    <!--COLUMNA 3-->
+                    <div class="col-sm-4 ">     
+                        <button  (click)=" limpiar()" type="button" class="btn btn-danger">limpiar</button> <br> <br>                                          
+                             <!--mensaje de advertencia-->
+                          <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+     
+                    </div>
+                </div>  
+            </div>
+            
+            <!---->
+     </div>
+</div>
+
+
+

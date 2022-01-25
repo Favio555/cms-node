@@ -1,0 +1,125 @@
+<app-menu-lateral></app-menu-lateral>
+
+
+<div class="form-group"style="border-left: rgb(255, 251, 251) 80px solid;"><br> <!-- Submit Button -->
+    
+    <app-in-aviso></app-in-aviso><br>
+  
+</div>
+<div class="container">  <hr> <button (click)="mostrarOcultar()" type="button" class="btn btn-success"><i class="fa fa-list fa-1x"></i> &nbsp; REGISTRO DE TODOS LOS LOS AVISOS</button></div><br>
+<div *ngIf="showMe">
+     <div class="table-responsive " style="border-left: rgb(255, 251, 251) 80px solid;
+               border-right: rgb(255, 251, 251) 30px solid;" >
+     
+                     
+            <table class="table caption-top custab ">
+             
+             <thead style="background :rgba(223, 73, 46, 0.911); border: rgb(176, 189, 189) solid 2px;">
+               <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Nombre</th>
+                 <th scope="col">Descripcion</th>
+                 <th scope="col">Fecha</th>
+                 <th scope="col">Hora</th>
+                 <th scope="col">Editar</th>
+                 <th scope="col">Eliminar</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let aviso of  ListarAviso  | paginate: { itemsPerPage: 3, currentPage: page }">
+                 <th scope="row">{{aviso.id}}</th>
+                 <td>{{aviso.nombre}}</td>
+                 <td>{{aviso.descripcion}}</td>
+                 <td>{{aviso.fecha}}</td>
+                 <td>{{aviso.hora}}</td>
+                 <td>
+                     <button (click)=" modificarEditSelect(aviso.id!)" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                 </td>
+                 <td>
+                     <button (click)=" eliminarAviso(aviso.id!)" type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                 </td>
+               </tr>
+               
+             </tbody>
+           </table>
+           <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+           nextLabel="Siguiente" ></pagination-controls>
+
+     </div>
+
+</div>
+
+<!--editar--------------------------------------------->
+<div class="container">
+  <div class="row">
+    <!--COLUMNA 1-->
+    <div class="col-sm-5 card">
+      <b for="state_id" class="control-label" >Editar información :</b><hr>
+      <table>
+        <tr>
+            <td><label for="state_id" class="control-label">Nombre:</label></td>
+            <td><input [(ngModel)]="use2.nombre" type="text" class="control" ></td>
+        </tr>
+        <tr>
+          <td><label for="state_id" class="control-label">Descripción:</label></td>
+          <td><input  [(ngModel)]="use2.descripcion" [ngModelOptions]="{standalone: true}" type="text" class="control"  ></td>
+       </tr>
+        <hr>   
+        <tr>
+            <td>       
+              <button (click)="modificar()"  type="button" class="btn  btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Guardar</button>
+              </td>
+            <td>
+              <button (click)="reloadCurrentPage()" type="button" class="btn btn-outline-primary "><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;Ver</button>
+            </td>
+        </tr> 
+        
+    </table>
+    </div>
+    <!--COLUMNA 2-->
+    <div class="col-sm-6 ">  
+      <td>
+            
+        <button  (click)=" limpiar()" type="button" class="btn btn-danger">limpiar</button> 
+      </td><br>                                             
+          <!--mensaje de advertencia-->
+        <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+        <br>
+    </div>
+  </div> 
+  
+</div>
+<!--------------------------------------------------->
+
+
+<!--vista aviso-->
+
+<div class="container" ><hr>
+    <div class="row">
+      <div class="col-md-8">
+      <div *ngFor="let aviso of  ListarAviso "><br>
+        <div class="content">
+          <div class="card card-photo" >
+                <div class="card-header">
+                  <table> <td><h4>{{aviso.nombre}}</h4></td></table>
+                </div>
+                
+                <div class="card-body">
+                    <tr> {{aviso.descripcion}}</tr><br>
+                  <div class="row">
+                      <div class="col-md-6" style="color: rgb(155, 150, 150);" >
+                        
+                             Fecha y hora de publicacion: 
+                            <tr>
+                                <td>{{aviso.fecha}}</td>&nbsp;
+                                <td>{{aviso.hora}}</td>                                
+                            </tr>                              
+                      </div>
+                   </div>              
+                 </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+ </div>
+</div>

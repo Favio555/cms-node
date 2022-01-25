@@ -1,0 +1,48 @@
+<app-nav-vista-principal></app-nav-vista-principal><br>
+<!--vista blog-->
+
+<div class="container" ><p>Inicio/Blog/</p><hr>
+    <div class="row">
+      <div class="col-md-8">
+      <div  *ngFor="let Blog of  ListarBlog"><br>
+        <div class="content">
+          <div class="card card-photo" >
+                <div class="card-header">
+                  <table>
+                    
+                      <td><h4>{{Blog.titulo}}</h4></td>
+                     
+                    
+                    
+                  </table>
+                </div>
+                
+                <div class="card-body">
+                    <tr>
+                        {{Blog.descripcion}}
+                      </tr>
+                  <div class="row">
+                      <div class="col-md-6" >           
+                         <img src="assets/img/{{Blog.imagen}}" width="200" height="150" style="border-radius: 5px;" >
+                        <!-- <div class="profileinfo"><h3>Leer mas...</h3></div>-->
+                       
+                      </div>
+                      <div  style="color: rgb(155, 150, 150);" >
+                        
+                        Fecha y hora de modificación: 
+                       <tr>
+                           <td>{{Blog.fecha}}</td>&nbsp;
+                           <td>{{Blog.hora}}</td>                                
+                       </tr>                              
+                 </div>
+                   </div>              
+                 </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+   
+    </div>
+  </div>
+
+  <app-vista-footer></app-vista-footer>

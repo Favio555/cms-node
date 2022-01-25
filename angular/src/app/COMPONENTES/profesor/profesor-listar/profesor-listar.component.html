@@ -1,0 +1,267 @@
+<app-menu-lateral></app-menu-lateral>
+     <div class="form-group"style="border-left: rgb(255, 251, 251) 80px solid;"><br> <!-- Submit Button -->
+ <tr>
+   <td> <button routerLink="/profesorinicio" type="button" class="btn btn-lg btn-outline-success "><i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Agregar</button><br></td>&nbsp;&nbsp;&nbsp;
+   <td> <button class="btn btn-lg btn-outline-primary" (click)="reloadCurrentPage()"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refrescar</button></td>
+ </tr>
+    </div>
+<div class="container">  <hr> <button (click)="mostrarOcultar()" type="button" class="btn btn-success"><i class="fa fa-list fa-1x"></i> &nbsp; REGISTRO DE TODOS LOS PROFESORES</button></div><br>
+<div *ngIf="showMe">
+<div class="table-responsive " style="border-left: rgb(255, 251, 251) 80px solid;
+border-right: rgb(255, 251, 251) 30px solid;" >
+ 
+                 
+    <table class="table caption-top custab ">
+        
+        <thead style="background :rgba(205, 207, 206, 0.534); border: rgb(176, 189, 189) solid 2px;">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido Paterno</th>
+            <th scope="col">Apellido Materno</th>
+            <th scope="col">Ci</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Grado</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profesor of ListarProfesor  | paginate: { itemsPerPage: 3, currentPage: page }">
+            <th scope="row">{{profesor.id}}</th>
+            <td>{{profesor.nombre}}</td>
+            <td>{{profesor.apellido_paterno}}</td>
+            <td>{{profesor.apellido_materno}}</td>
+            <td>{{profesor.ci}}</td>
+            <td>{{profesor.celular}}</td>
+            <td>{{profesor.correo_electronico}}</td>
+            <td>{{profesor.genero}}</td>
+            <td><img src="assets/img/{{profesor.imagen}}" height="70" width="70" style="border-radius: 100px;"></td>
+            <td>{{profesor.materia}}</td>
+            <td>{{profesor.especialidad}}</td>
+            <td>{{profesor.curso}}</td>
+            <td>{{profesor.grado}}</td>
+            <td>
+                <button (click)="modificar(profesor.id!)" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </td>
+            <td>
+                <button (click)="eliminar(profesor.id!)" type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+           nextLabel="Siguiente" ></pagination-controls>
+ </div>
+</div>
+ <!--Editar-------------------------->
+   <div class="container"><br>
+    <div class="row">
+       <div class="col-md-8">
+        <!--COLUMNA FORMULARIO REGISTRO-->
+                
+           <form class=" shadow-5-strong p-5 caja ">
+               <h5 >FORMULARIO DE EDICION</h5>
+               <div class="row">
+                   <!--COLUMNA 1-->
+                   <div class="col-sm-6 ">
+                       <div class="form-group"> <!-- NOMBRE -->
+                           <input [(ngModel)]="use2.nombre" name="first" type="text" class="form-control" id="full_name_id" name="full_name" placeholder="Nombre">
+                       </div>
+
+                       <div class="form-group"><br> <!-- Street 1 -->
+                           <input  [(ngModel)]="use2.apellido_paterno" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street1_id" name="street1" placeholder="Apellido Paterno">
+                       </div>
+                       <div class="form-group"><br> <!-- Street 2 -->
+                           <input [(ngModel)]="use2.ci" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Cedula de Identidad">
+                       </div>  
+                       <div class="form-group"><br> <!-- Street 2 -->
+                           <input  [(ngModel)]="use2.materia" [ngModelOptions]="{standalone: true}"type="text" class="form-control" id="street2_id" name="street2" placeholder="Materia">
+                       </div>                        
+                       
+                    
+                       <div class="row">
+                           <!--COLUMNA 1.2-->
+                           <div class="col-md-4 "> 
+                               <div class="form-group"> <br><!-- State Button -->
+                                   <label for="state_id" class="control-label" >Genero</label>
+                                   <select  [(ngModel)]="use2.genero" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id" >
+                                       <option value="F">F</option>
+                                       <option value="M">M</option>
+                                   </select>                    
+                               </div>
+                           </div>
+                           <div class="col-md-4 "> 
+                               <div class="form-group"> <br><!-- State Button -->
+                                   <label for="state_id" class="control-label">Paralelo</label>
+                                   <select  [(ngModel)]="use2.paralelo" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                       <option value="A">A</option>
+                                       <option value="B">B</option>
+                                       <option value="C">C</option>
+                                       <option value="D">D</option>
+                                       <option value="E">E</option>
+                                       <option value="F">F</option>
+                                   </select>                    
+                               </div><br>
+                           </div>
+                       </div>
+                       
+                       <!-- Submit Button -->                       
+                           <button (click)="modificarGuardar()"  type="button" class="btn btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Guardar</button> &nbsp;
+                           <button (click)="reloadCurrentPage()" type="button" class="btn btn-outline-primary "><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Ver</button>
+                       
+                       <!-- <button routerLink="/add" type="button" class="btn btn-primary "style="background-color: #238D4E;">Agregar</button>--> 
+                           
+                   
+           
+                   </div>
+                   <!--COLUMNA 2-->
+                   <div class="col-sm-6 ">
+                       <div class="form-group"><!-- Street 2 -->
+                           <input  [(ngModel)]="use2.correo_electronico" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="street2_id" name="street2" placeholder="Correo Electronico">
+                       </div>   
+                       <div class="form-group"><br> <!-- Street 2 -->
+                           <input  [(ngModel)]="use2.apellido_materno" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Apellido materno">
+                       </div> 
+                       <div class="form-group"><br> <!-- Street 2 -->
+                           <input  [(ngModel)]="use2.celular" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Celular">
+                       </div> 
+                           
+                       <div class="form-group"><br> <!-- Street 2 -->
+                           <input  [(ngModel)]="use2.especialidad" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street2_id" name="street2" placeholder="Especialidad">
+                       </div>                                                     
+                       <div class="row">
+                           <!--COLUMNA 1-->
+                           <div class="col-md-4 "> 
+                               <div class="form-group"><br> <!-- State Button -->
+                                   <label for="state_id" class="control-label">Curso</label>
+                                   <select  [(ngModel)]="use2.curso" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
+                                       <option value="6">6</option>
+                                   </select>                    
+                               </div>
+                           </div>
+                           <div class="col-md-4 "> 
+                               <div class="form-group"><br> <!-- State Button -->
+                                   <label for="state_id" class="control-label">Grado</label>
+                                   <select  [(ngModel)]="use2.grado" [ngModelOptions]="{standalone: true}" class="form-control" id="state_id">
+                                       <option value="Primaria">Primaria</option>
+                                       <option value="Secundaria">Secundaria</option>
+                                   </select>                    
+                               </div><br> 
+                           </div>
+                          
+                       </div>
+                       <!--COLUMNA SELECCIONAR IMAGEN-->
+
+                       <input type="file" class="d-none"  (change)="onPhotoSelected($event)" #photoInput>
+                       <button  (click)="photoInput.click()" type="button" class="btn btn-outline-success">Seleccionar Imagen</button>&nbsp;
+                       <button  (click)=" limpiarfoto()" type="button" class="btn btn-danger">limpiar</button>
+                      
+                       <!---->
+                   </div>
+               </div> 
+             
+
+           </form>
+       </div>
+       
+       <div class="col-md-4">
+           <!--COLUMNA 2 vistas-->
+           <form class=" shadow-5-strong p-4 cajaCard " ><br>
+              
+               <div class="row">
+                   <!--COLUMNA 1-->
+                   <div class="col-sm-6 ">
+                       <div class="form-group" > <!-- State Button -->
+                           <img  [src]="photoSelected || 'assets/img/no-image.png'" height="150px" width="150px" style="border-radius: 10%;border: 2px rgb(189, 180, 180) solid;">          
+                        </div>
+                       
+                        <div class="form-group"><!-- State Button -->
+                           Materia:  <label for="state_id" class="control-label">{{use2.materia}}</label>                
+                        </div>
+                       
+                       <div class="form-group"> <!-- State Button -->
+                           Curso:  <label for="state_id" class="control-label">{{use2.curso}}</label>                
+                        </div>
+                        
+                       <div class="form-group"> <!-- State Button -->
+                        Paralelo:  <label for="state_id" class="control-label">{{use2.paralelo}}</label>
+                       </div>
+                        <div class="form-group"> <!-- State Button -->
+                           Grado:  <label for="state_id" class="control-label">{{use2.grado}}</label>                
+                        </div>
+                     
+                       
+           
+                   </div>
+                   <!--COLUMNA 2-->
+                   <div class="col-sm-6 ">
+                       <div class="form-group"> <!-- State Button -->
+                           Nombre:  <label for="state_id" class="control-label">{{use2.nombre}}</label>                
+                        </div>
+                        <div class="form-group"> <!-- State Button -->
+                           Apellido Paterno:  <label for="state_id" class="control-label">{{use2.apellido_paterno}}</label>                
+                        </div>
+                       <div class="form-group"> <!-- State Button -->
+                           Apellido Materno:  <label for="state_id" class="control-label">{{use2.apellido_materno}}</label>                
+                        </div>
+                        <div class="form-group"> <!-- State Button -->
+                           Celular:  <label for="state_id" class="control-label">{{use2.celular}}</label>                
+                        </div>
+                        <div class="form-group"> <!-- State Button -->
+                           Ci:  <label for="state_id" class="control-label">{{use2.ci}}</label>                
+                        </div>
+                                           
+                        <div class="form-group"> <!-- State Button -->
+                           Genero: <label for="state_id" class="control-label" >{{use2.genero}}</label>                   
+                        </div>
+
+                       <div class="form-group"> <!-- State Button -->
+                           Correo Electronico:  <label for="state_id" class="control-label">{{use2.correo_electronico}}</label>                
+                        </div> 
+                   </div>
+               </div>        
+               
+           </form><br>
+          
+           <!--mensaje de advertencia-->
+           <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+           <br>
+          
+       </div>
+
+   </div>
+
+</div>
+  <!--------------------------------->
+<!--
+<div class="container" >
+  <div class="row">
+    <div class="col-md-3 p-3" *ngFor="let profesor of ListarProfesor">
+      <div class="content">
+        <div class="card card-photo" >
+          <div class="firstinfo"> <img src="assets/img/{{profesor.imagen}}" ></div>
+            <div class="profileinfo"><h1>Prof: &nbsp;{{profesor.nombre}}</h1></div>
+            <div class="profileinfo">{{profesor.apellido_paterno}}</div>
+            <div class="profileinfo">{{profesor.apellido_materno}}</div>
+            <div class="profileinfo"><h3>{{profesor.correo_electronico}}</h3></div>
+            <div class="profileinfo">{{profesor.especialidad}}</div>
+        </div>
+      </div>  
+    </div>
+  </div>
+-->
+  
+  

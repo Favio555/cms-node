@@ -1,0 +1,53 @@
+     <!--MODAL 1 AGERGAR GALERIA-->
+     <ng-template class="modal" #content let-c="close" let-d="dismiss">
+        <div class="modal-header header">
+          <h4 class="modal-title" id="modal-basic-title">ENLACE</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body body">
+          <!---->
+   
+             <!--COLUMNA FORMULARIO REGISTRO -->
+    
+                    <div class="row">
+                            <!--COLUMNA 1-->
+                            <div class="col-sm-6 ">
+                                <div class="form-group"> <!-- NOMBRE -->
+                                    <input [(ngModel)]="use.nombre" name="first" type="text" class="form-control" id="full_name_id" name="full_name" placeholder="Nombre">
+                                </div>
+  
+                                <div class="form-group"><br> <!-- Street 1 -->
+                                    <input  [(ngModel)]="use.linkk" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street1_id" name="street1" placeholder="Enlace">
+                                </div><br>
+                                <input type="file" class="d-none"  (change)="onPhotoSelected($event)" #photoInput>
+                                <button  (click)="photoInput.click()" type="button" class="btn btn-outline-success">Seleccionar Imagen</button>&nbsp;
+                            </div>
+                            <!--COLUMNA 2-->
+                            <div class="col-sm-6 ">                                                
+                                  <!--mensaje de advertencia-->
+                                <li class="alert alert-dismissible alert-warning " *ngFor="let obj of errores |keyvalue"  >{{ obj.value }}</li>
+                                <br>
+                                <div class="form-group" > <!-- State Button -->
+                                    <img  [src]="photoSelected || 'assets/img/no-image.png'" height="150px" width="150px" style="border-radius: 10%;border: 2px rgb(189, 180, 180) solid;">          
+                                 </div>
+                            </div>
+                    </div> 
+          <!---->
+        </div>
+        <div class="modal-footer footer">
+           <!-- Submit Button en el modal -->
+           
+            <button (click)="anadirEnlace()"  type="button" class="btn  btn-success "><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Agregar</button>
+            <button (click)="c('reloadCurrentPage()')" type="button" class="btn btn-outline-primary "><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;Ver</button>
+            <button  (click)=" limpiarFormulario()" type="button" class="btn btn-danger">limpiar</button> 
+            
+        </div>
+      </ng-template>
+    
+        <!-- Submit Button el menu arriba -->
+      <button class="btn btn-lg btn-outline-primary" (click)="openModal1(content)"><i class="fa fa-plus" aria-hidden="true"></i>  &nbsp;Agregar Enlace</button> &nbsp;
+      <button class="btn btn-lg btn-outline-success" (click)="reloadCurrentPage()"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refrescar</button>
+      
+    

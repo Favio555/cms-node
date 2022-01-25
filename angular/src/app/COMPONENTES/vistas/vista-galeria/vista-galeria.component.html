@@ -1,0 +1,42 @@
+<app-nav-vista-principal></app-nav-vista-principal><br>
+
+   <!--columna galeria-->
+   <div class="container" ><p>Inicio/Galeria/</p><hr>
+    <div class="row">
+  
+      <div class="col-md-8">
+      <div  *ngFor="let galeria of Listargaleria"><br>
+        <div class="content">
+          <div class="card card-photo" >
+                <div class="card-header">
+                  <table>
+                    <tr>
+                      <td><h4>{{galeria.nombre}}</h4></td>
+                     
+                    </tr>
+                    <tr>
+                      {{galeria.descripcion}}
+                    </tr>
+                  </table>
+                </div>
+                
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-6" *ngFor="let fotos of Listarfoto">
+                          <ng-container *ngIf="galeria.id==fotos.id_galeria">
+                              <div class="card card-photo" >                    
+                                    <img src="assets/img/{{fotos.imagen}}" width="310" height="250" style="border-radius: 5px;" >
+                                    
+                              </div> <br>                   
+                          </ng-container>
+                      </div>
+                   </div>              
+                 </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+   
+    </div>
+  </div>
+  <app-vista-footer></app-vista-footer>

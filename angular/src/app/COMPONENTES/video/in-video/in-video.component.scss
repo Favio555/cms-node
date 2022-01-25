@@ -1,0 +1,27 @@
+@import "~font-awesome/css/font-awesome.css";
+.modal{
+    border-radius: 20px;
+}
+.header{
+
+//  border-radius: 10px;
+box-shadow: 0px 0px 0px 2px   #226566 ;
+background: #226566 ;
+border: #226566 3px solid;
+}
+.close{
+background: #226566;
+border-style: none;
+border-radius: 5px;
+color: honeydew;
+}
+.footer{
+   // box-shadow: 0px 0px 0px 10px   rgb(255, 255, 254);
+    background: rgb(230, 230, 224);
+    box-shadow: 0px 0px 0px 1px rgb(230, 230, 224);
+
+}
+.modal-title{
+    color: honeydew;
+    float: left;
+}

@@ -1,0 +1,14 @@
+<app-nav-vista-principal></app-nav-vista-principal><br>
+<div class="container " ><p>Inicio/Video/</p><hr>
+    <div  *ngFor="let video of ListarVideo ">
+  <h4 class="card">{{video.nombre}}</h4>
+  {{video.descripcion}}<br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/a0YzTFqby0k" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        
+       
+    </div>
+</div>
+
+<app-vista-footer></app-vista-footer>

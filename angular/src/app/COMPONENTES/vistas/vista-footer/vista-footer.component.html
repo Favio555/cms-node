@@ -1,0 +1,111 @@
+<br>
+
+ <!-- Footer -->
+ <footer class="page-footer font-small stylish-color-dark pt-4 " style="border-radius: 20px; background-color: rgb(238, 235, 238);">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-4 mx-auto">
+  
+          <!-- Content -->
+          <div *ngFor="let pagina of  Listarpagina" >
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4"*ngFor="let fo of Listarpagina ">{{ fo.nombre}}</h5>
+          </div>
+          <p class="font-weight-bold "*ngFor="let fo of Listarfooter">{{ fo.descripcion}}</p>
+          <div *ngFor="let pagina of  Listarpagina" >
+            <img src="assets/img/{{pagina.imagen}}" width="120px" height="110px" >
+          </div>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none">
+  
+        <!-- Grid column -->
+        <div class="col-md-4 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contactos</h5>
+  
+          <ul class="list-unstyled" *ngFor="let fo of Listarfooter">
+            <li>
+                <i class="fa fa-globe" aria-hidden="true"></i> &nbsp;<label for="state_id" class="control-label">{{fo.direccion}}</label>
+              
+            </li>
+            <li>
+                <i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;<label for="state_id" class="control-label">{{fo.telefono}}</label>
+              
+            </li>
+            <li>
+                <i class="fa fa-envelope" aria-hidden="true"></i>  &nbsp;<a href="{{fo.correo}}">{{fo.correo}}</a>
+            </li>
+            <li>
+                <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;<label for="state_id" class="control-label">Lunes-Viernes: 9:00 a 12:30</label>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none">
+  
+        <!-- Grid column -->
+        <div class="col-md-2 mx-auto">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Enlaces</h5>
+  
+          <ul class="list-unstyled" *ngFor="let en of  Listarenlace">
+            <li>
+              <a href="{{en.linkk}}"><i class="fa fa-external-link" aria-hidden="true"></i> &nbsp;{{en.nombre}}</a>
+            </li>
+          
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <hr>
+  
+    <!-- Call to action -->
+    <ul class="list-unstyled list-inline text-center py-2">
+      <li class="list-inline-item">
+        <h5 class="mb-1">Login</h5>
+      </li>
+      <li class="list-inline-item">
+        <a href="/login" class="btn btn-danger btn-rounded">ir</a>
+      </li>
+    </ul>
+    <!-- Call to action -->
+  
+    <hr>
+  
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center"  >
+      <li class="list-inline-item"*ngFor="let re of Listarredes">
+        <a  href="{{re.enlace}}"class="btn-floating btn-fb mx-1">
+            <i class="{{re.icono }}" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:Colegio Alemán Cardenal Maurer
+      <a href=""> </a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->

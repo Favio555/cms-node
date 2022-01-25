@@ -1,0 +1,32 @@
+<app-nav-vista-principal></app-nav-vista-principal><br>
+
+<div class="container" ><p>Inicio/Avisos/</p><hr>
+    <div class="row">
+      <div class="col-md-8">
+      <div *ngFor="let aviso of  ListarAviso "><br>
+        <div class="content">
+          <div class="card card-photo" >
+                <div class="card-header">
+                  <table> <td><h4>{{aviso.nombre}}</h4></td></table>
+                </div>
+                
+                <div class="card-body">
+                    <tr> {{aviso.descripcion}}</tr><br>
+                  <div class="row">
+                      <div class="col-md-6" style="color: rgb(155, 150, 150);" >
+                        
+                             Fecha y hora de modificación: 
+                            <tr>
+                                <td>{{aviso.fecha}}</td>&nbsp;
+                                <td>{{aviso.hora}}</td>                                
+                            </tr>                              
+                      </div>
+                   </div>              
+                 </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+ </div>
+</div>
+<app-vista-footer></app-vista-footer>
